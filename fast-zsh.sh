@@ -41,24 +41,23 @@ else
     fi
 fi
 
-echo "Installing Oh My ZSH \n"
-
 if [ -d "~/.oh-my-zsh" ]; then
     echo "Directory ~/.oh-my-zsh exists."
 else
-    yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "Installing Oh My ZSH\n"
+    yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &>/dev/null
 fi
 
 if [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions"]; then
     echo "autosuggestions already downladed \n"
 else
-    sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions &>/dev/null
 fi
 
 if [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"]; then
     echo "syntax-highlighting already downladed \n"
 else
-    sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting &>/dev/null
 fi
 
 res=True
