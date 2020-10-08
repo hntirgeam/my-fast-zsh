@@ -52,21 +52,32 @@ fi
 if [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions"]; then
     echo "autosuggestions already downladed \n"
 else
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 fi
 
 if [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"]; then
     echo "syntax-highlighting already downladed \n"
 else
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 fi
 
-if input==1; then
-    sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="gnzh"/g' ~/.zshrc
-    sed -i 's/plugins()/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~.zshrc
-else
-    sed -i 's/plugins()/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~.zshrc
-fi
+res=True
+for dir in \
+    "$ZSH_CUSTOM/plugins/zsh-autosuggestions" \
+    "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"; do
+    if ! [ -d "$dir" ]; then
+        res=False
+        break
+    else
+        if input==1; then
+            sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="gnzh"/g' ~/.zshrc
+            sed -i 's/plugins(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc
+        else
+            sed -i 's/plugins(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc
+        fi
+
+    fi
+done
 
 exit
 
