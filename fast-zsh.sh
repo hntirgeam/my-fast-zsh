@@ -52,13 +52,13 @@ fi
 if [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
     echo "autosuggestions already downladed \n"
 else
-    "sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions"
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 fi
 
 if [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
     echo "syntax-highlighting already downladed \n"
 else
-    "sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting" &>/dev/null
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" &>/dev/null
 fi
 
 for dir in \
