@@ -1,6 +1,7 @@
 #!/bin/bash
 
 input=1
+ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
 
 start() {
     echo "Select version"
@@ -42,16 +43,16 @@ else
 fi
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
-    echo "Directory ~/.oh-my-zsh exists."
+    echo "Directory $HOME/.oh-my-zsh exists."
 else
     echo "Installing Oh My ZSH"
-    yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &>/dev/null
+    yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
 fi
 
 if [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
     echo "autosuggestions already downladed \n"
 else
-    "sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions" &>/dev/null
+    "sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions"
 fi
 
 if [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
