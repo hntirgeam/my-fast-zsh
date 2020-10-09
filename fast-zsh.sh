@@ -41,44 +41,42 @@ else
     fi
 fi
 
-if [ -d "~/.oh-my-zsh" ]; then
+if [ -d "$HOME/.oh-my-zsh" ]; then
     echo "Directory ~/.oh-my-zsh exists."
 else
-    echo "Installing Oh My ZSH\n"
+    echo "Installing Oh My ZSH"
     yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &>/dev/null
 fi
 
-if [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions"]; then
+if [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
     echo "autosuggestions already downladed \n"
 else
-    sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions &>/dev/null
+    "sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions" &>/dev/null
 fi
 
-if [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"]; then
+if [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
     echo "syntax-highlighting already downladed \n"
 else
-    sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting &>/dev/null
+    "sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting" &>/dev/null
 fi
 
-res=True
 for dir in \
     "$ZSH_CUSTOM/plugins/zsh-autosuggestions" \
     "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"; do
     if ! [ -d "$dir" ]; then
-        res=False
-        break
+        echo "Something weird happened. No dirs with plugins was generated"
+        exit
     else
-        if input==1; then
-            sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="gnzh"/g' ~/.zshrc
-            sed -i 's/plugins(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc
+        if [ "$input" = 1 ]; then
+            sed -i '/ZSH_THEME=/c\ZSH_THEME="gnzh"' $HOME/.zshrc
+            sed -i '/plugins=(/c\plugins=(git zsh-autosuggestions zsh-syntax-highlighting)' $HOME/.zshrc
         else
-            sed -i 's/plugins(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' ~/.zshrc
+            sed -i '/ZSH_THEME=/c\ZSH_THEME="robbyrussell"' $HOME/.zshrc
+            sed -i '/plugins=(/c\plugins=(git zsh-autosuggestions zsh-syntax-highlighting)' $HOME/.zshrc
         fi
-
     fi
 done
 
-exit
+echo "Terminal restart required "
 
-# find ZSH_THEME="robbyrussell"
-# change to ZSH_THEME="gnzh"
+exit
