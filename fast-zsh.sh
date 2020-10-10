@@ -78,6 +78,8 @@ for dir in \
     fi
 done
 
-echo "Terminal restart required "
+sleep 5
+
+zsh
 
 exit
