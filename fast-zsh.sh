@@ -33,10 +33,10 @@ start() {
 start
 
 if command -v git &>/dev/null && command -v zsh &>/dev/null && command -v &>/dev/null && command -v curl &>/dev/null; then
-    echo -e "git & zsh & curl are already installed \n"
+    echo -e "git & zsh & curl are already installed"
 else
     if sudo apt install -y zsh git curl || sudo pacman -S zsh git curl || sudo dnf install -y zsh git curl || sudo yum install -y zsh git curl || sudo brew install git zsh curl || pkg install git zsh curl; then
-        echo -e "git & zsh & curl Installed\n"
+        echo -e "git & zsh & curl Installed"
     else
         echo -e "Please install the following packages first, then try again: zsh git curl \n" && exit
     fi
@@ -50,13 +50,13 @@ else
 fi
 
 if [ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-    echo "autosuggestions already downladed \n"
+    echo "autosuggestions already downladed"
 else
     git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 fi
 
 if [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
-    echo "syntax-highlighting already downladed \n"
+    echo "syntax-highlighting already downladed"
 else
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" &>/dev/null
 fi
@@ -65,7 +65,7 @@ for dir in \
     "$ZSH_CUSTOM/plugins/zsh-autosuggestions" \
     "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"; do
     if ! [ -d "$dir" ]; then
-        echo "Something weird happened. No dirs with plugins was generated"
+        echo "Something weird happened. No dirs with plugins were generated"
         exit
     else
         if [ "$input" = 1 ]; then
