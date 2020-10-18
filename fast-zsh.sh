@@ -35,7 +35,7 @@ pkg0='zsh'
 pkg1='git'
 pkg2='curl'
 
-if dpkg -s $pkg0 >/dev/null 2>&1 && dpkg -s $pkg1 >/dev/null 2>&1 &&  dpkg -s $pkg2; then
+if dpkg -s $pkg0 >/dev/null 2>&1 && dpkg -s $pkg1 >/dev/null 2>&1 &&  dpkg -s $pkg2 >/dev/null 2>&1; then
     echo -e "git & zsh & curl are already installed"
 else
     if sudo apt install -y zsh git curl || sudo pacman -S zsh git curl || sudo dnf install -y zsh git curl || sudo yum install -y zsh git curl || sudo brew install git zsh curl || pkg install git zsh curl; then
