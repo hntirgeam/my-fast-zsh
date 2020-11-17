@@ -80,6 +80,7 @@ for dir in \
         fi
     fi
 done
+chsh -s $(which zsh)
 
 sleep 5
 
